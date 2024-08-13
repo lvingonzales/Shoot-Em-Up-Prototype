@@ -9,14 +9,10 @@ public class playerAttack : MonoBehaviour
     public Transform bulletPosition;
     public GameObject bullet;
 
+    // Update is called once per frame
     private void Start()
     {
-        InvokeRepeating("Shoot", 1.0f, 0.5f);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        InvokeRepeating("Shoot", 1.0f, 0.3f);
     }
     void Shoot()
     {

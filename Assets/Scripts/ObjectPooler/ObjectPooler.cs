@@ -20,8 +20,9 @@ public class ObjectPooler : MonoBehaviour
     void Start()
     {
         pooledObjects = new List<GameObject>();
-        for (int i = 0; 1 <= pooledAmount; i++)
+        for (int i = 0; i < pooledAmount; i++)
         {
+            Debug.Log("Added to Pool");
             GameObject obj = Instantiate(pooledObject);
             obj.SetActive(false);
             pooledObjects.Add(obj);
