@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMovement : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
     public float moveSpeed;
 
@@ -31,5 +31,10 @@ public class BulletMovement : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Disable();
     }
 }

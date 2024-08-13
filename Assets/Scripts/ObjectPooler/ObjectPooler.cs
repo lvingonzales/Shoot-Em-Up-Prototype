@@ -22,13 +22,14 @@ public class ObjectPooler : MonoBehaviour
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < pooledAmount; i++)
         {
-            Debug.Log("Added to Pool");
             GameObject obj = Instantiate(pooledObject);
             obj.SetActive(false);
             pooledObjects.Add(obj);
         }
+
+        
     }
-    
+
     public GameObject GetPooledObject()
     {
         for (int i = 0; i < pooledObjects.Count; i++)
@@ -38,7 +39,7 @@ public class ObjectPooler : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        
+
         if (willGrow)
         {
             GameObject obj = Instantiate(pooledObject);

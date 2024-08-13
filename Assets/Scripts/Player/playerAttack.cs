@@ -5,14 +5,14 @@ using UnityEngine;
 public class playerAttack : MonoBehaviour
 {
     //Get Input from Player and launch a projectile
-
+    public float firerate;
     public Transform bulletPosition;
     public GameObject bullet;
 
     // Update is called once per frame
     private void Start()
     {
-        InvokeRepeating("Shoot", 1.0f, 0.3f);
+        InvokeRepeating("Shoot", 0.0f, firerate);
     }
     void Shoot()
     {
