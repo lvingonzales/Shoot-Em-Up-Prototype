@@ -10,7 +10,6 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner current;
 
     private List<GameObject> enemies;
-    // Start is called before the first frame update
 
     private void Awake()
     {
@@ -18,17 +17,22 @@ public class EnemySpawner : MonoBehaviour
     }
     void Start()
     {
+        Setup();
+    }
+
+    private void Setup()
+    {
         enemies = new List<GameObject>();
         for (int i = 0; i < hordeSize; i++)
-        { 
+        {
             GameObject obj = Instantiate(enemy);
             obj.SetActive(false);
             enemies.Add(obj);
         }
-        InvokeRepeating("Spawn", 0.0f, 0.25f);
-        InvokeRepeating("AddHorde", 0.0f, 5.0f);
+        InvokeRepeating("Spawn", 0.0f, 0.10f);
+        //InvokeRepeating("AddHorde", 0.0f, 5.0f);
     }
-    
+
     public GameObject GetCurrentEnemy ()
     {
         for (int i = 0; i < enemies.Count; i++)

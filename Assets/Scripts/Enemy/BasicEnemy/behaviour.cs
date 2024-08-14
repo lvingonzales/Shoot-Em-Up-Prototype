@@ -5,10 +5,11 @@ using UnityEngine;
 public class behaviour : MonoBehaviour
 {
     public float moveSpeed;
-
-    private Rigidbody2D rb;
+    
+    
     private float moveDirection = 1;
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,10 +18,7 @@ public class behaviour : MonoBehaviour
     private void OnEnable()
     {
         Invoke("Disable", 3.0f);
-    }
-    void Start()
-    {
-        // InvokeRepeating("changeDirection", 2.0f, 4.0f);
+
     }
 
     private void FixedUpdate()
@@ -44,21 +42,12 @@ public class behaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Disable();
+        if (collision.CompareTag("Bullet"))
+        {
+
+        }
+
+        if (collision.CompareTag("Player")) Debug.Log("CONTACT");
+        
     }
-    /*void changeDirection ()
-    {
-        Debug.Log("direction changed");
-        if (moveDirection < 0)
-        {
-            Debug.Log("Less Than");
-            moveDirection = moveDirection * -1;
-            Debug.Log(moveDirection);
-        }
-        else
-        {
-            moveDirection = moveDirection * -1;
-        }
-    } 
-    */
 }

@@ -353,10 +353,14 @@ GameObject:
   - component: {fileID: 940073749}
   - component: {fileID: 940073748}
   - component: {fileID: 940073747}
+  - component: {fileID: 940073753}
   - component: {fileID: 940073746}
+  - component: {fileID: 940073751}
+  - component: {fileID: 940073752}
+  - component: {fileID: 940073754}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6257ebe783c90f641b2faada3db6984b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerate: 0.25
+  firerate: 0.1
   bulletPosition: {fileID: 1328088522}
   bullet: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
 --- !u!50 &940073748
@@ -484,6 +488,96 @@ Transform:
   - {fileID: 1328088522}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &940073751
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940073745}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0031362772}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 1.28}
+    newSize: {x: 0.64, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5521834, y: 1.1482751}
+  m_EdgeRadius: 0
+--- !u!114 &940073752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940073745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26aad1eb77dbb194fa6df2cb03c7f60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 6
+  exp: 0
+  expmax: 10
+  level: 1
+--- !u!114 &940073753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940073745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d06af651215bc468342a2e9cbaf210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 940073752}
+--- !u!114 &940073754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940073745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3e331fbd531d43b4f15ef6676da04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 89f4a7ca0b73b3141b2b6cd8445964d7, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1016277653
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +604,7 @@ Transform:
   m_GameObject: {fileID: 1016277653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.99, y: 3.24, z: 0.0041998443}
+  m_LocalPosition: {x: -13.02, y: 4.03, z: 0.0041998443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -529,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 9064013579682581045, guid: d776c3d0dd3f16649a96b06ca59c2a80, type: 3}
-  hordeSize: 1
+  hordeSize: 10
 --- !u!1 &1260806347
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,8 +669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
-  pooledAmount: 8
-  willGrow: 0
+  pooledAmount: 10
+  willGrow: 1
 --- !u!1 &1328088521
 GameObject:
   m_ObjectHideFlags: 0
