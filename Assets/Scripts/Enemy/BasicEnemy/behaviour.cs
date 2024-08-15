@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class behaviour : MonoBehaviour
 {
+    public GameEvent enemyDeath;
     public float moveSpeed;
+    public PlayerController playerController;
     
     
     private float moveDirection = 1;
@@ -44,7 +46,8 @@ public class behaviour : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-
+            enemyDeath.TriggerEvent();
+            Disable();
         }
 
         if (collision.CompareTag("Player")) Debug.Log("CONTACT");

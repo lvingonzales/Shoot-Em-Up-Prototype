@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
         rb.velocity = transform.up * moveSpeed;
     }
 
-    void Disable()
+    public void Disable()
     {
         gameObject.SetActive(false);
     }

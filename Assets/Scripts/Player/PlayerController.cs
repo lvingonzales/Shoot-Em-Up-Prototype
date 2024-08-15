@@ -4,23 +4,48 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerStats stats;
+    public BulletController bulletController;
+    public GameEvent onPlayerDamage;
+    public GameEvent onPlayerDeath;
+    public int exp, expmax, level;
+    public int health = 6;
+
+    private void Awake()
+    {
+        exp = 0;
+        expmax = 10;
+        level = 1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Enemy"))
         {
-            if (stats.health > 0)
+            if (health <= 0)
             {
-                stats.health = stats.health - 2;
-            } else
-            {
-                stats.health = 0;
-
-                Debug.Log("DEAD!");
+                Debug.Log("IM DEAD");
+                onPlayerDeath.TriggerEvent();
+                gameObject.SetActive(false);
             }
+            else
+            {
+                health = health - 2;
+            }
+
         }
     }
 
+    public void Experience ()
+    {
+        if (exp >= expmax)
+        {
+            exp = 0;
+            level++;
+        }
+        else
+        {
+            exp++;
+        }
 
+    }
 }
