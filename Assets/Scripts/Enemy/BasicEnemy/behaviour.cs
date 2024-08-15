@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class behaviour : MonoBehaviour
 {
+    public int enemyhp = 3;
     public GameEvent enemyDeath;
     public float moveSpeed;
     public PlayerController playerController;
-    
-    
+
+    private string struckBy;
     private float moveDirection = 1;
     private Rigidbody2D rb;
     
@@ -20,6 +21,11 @@ public class behaviour : MonoBehaviour
     private void OnEnable()
     {
         Invoke("Disable", 3.0f);
+
+        if (enemyhp < 3)
+        {
+            enemyhp = 3;
+        }
 
     }
 
@@ -46,11 +52,31 @@ public class behaviour : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            enemyDeath.TriggerEvent();
-            Disable();
+            if (enemyhp > 0)
+            {
+                enemyhp--;
+            }
+            else
+            {
+                killEnemy();
+            }
         }
+        if (collision.CompareTag("Missile"))
+        {
+            if (enemyhp > 0)
+            {
+                enemyhp= enemyhp - 3;
+            }
+            else
+            {
+                killEnemy();
+            }
+        }       
+    }
 
-        if (collision.CompareTag("Player")) Debug.Log("CONTACT");
-        
+    void killEnemy()
+    {
+        enemyDeath.TriggerEvent();
+        Disable();
     }
 }

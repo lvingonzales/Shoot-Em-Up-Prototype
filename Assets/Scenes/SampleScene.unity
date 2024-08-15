@@ -275,7 +275,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.7772827
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 1016277653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.02, y: 4.03, z: 0.0041998443}
+  m_LocalPosition: {x: -0.02, y: 4.03, z: 0.0041998443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 9064013579682581045, guid: d776c3d0dd3f16649a96b06ca59c2a80, type: 3}
-  hordeSize: 10
+  hordeSize: 1
 --- !u!1 &1080991603
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
-  pooledAmount: 0
+  pooledAmount: 20
   willGrow: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

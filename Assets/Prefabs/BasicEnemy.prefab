@@ -171,5 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5fa9867175a564b92718563739e67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyhp: 3
   enemyDeath: {fileID: 11400000, guid: a1eee6b66b2090c49bfe6cfec65de157, type: 2}
-  moveSpeed: 10
+  moveSpeed: 0
+  playerController: {fileID: 0}
