@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class MissilePooler : MonoBehaviour
 {
-    public static ObjectPooler current;
+    public static MissilePooler current;
     public GameObject pooledObject;
     public int pooledAmount;
     public bool willGrow;
@@ -16,8 +15,8 @@ public class ObjectPooler : MonoBehaviour
     {
         current = this;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < pooledAmount; i++)
@@ -26,8 +25,6 @@ public class ObjectPooler : MonoBehaviour
             obj.SetActive(false);
             pooledObjects.Add(obj);
         }
-
-        
     }
 
     public GameObject GetPooledObject()

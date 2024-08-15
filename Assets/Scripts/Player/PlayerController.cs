@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public int exp, expmax, level;
     public int health = 6;
 
+    public int missileCount;
+
     private void Awake()
     {
         exp = 0;

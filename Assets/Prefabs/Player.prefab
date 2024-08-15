@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firerate: 0.1
+  playerController: {fileID: 1839213292525555295}
   bulletPosition: {fileID: 82758101577214949}
   bullet: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
-  isAlive: 1
 --- !u!114 &1839213292525555295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,12 +178,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d06af651215bc468342a2e9cbaf210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletController: {fileID: 0}
   onPlayerDamage: {fileID: 11400000, guid: de090da145cef1e41ba55550f59ef662, type: 2}
   onPlayerDeath: {fileID: 11400000, guid: 89f4a7ca0b73b3141b2b6cd8445964d7, type: 2}
   exp: 0
   expmax: 0
   level: 0
   health: 6
+  missileCount: 20
 --- !u!114 &6902936372435353768
 MonoBehaviour:
   m_ObjectHideFlags: 0
