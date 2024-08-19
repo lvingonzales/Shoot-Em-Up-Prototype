@@ -42,9 +42,7 @@ GameObject:
   - component: {fileID: 8176834771574963742}
   - component: {fileID: 4263954524046003454}
   - component: {fileID: 769855478564312831}
-  - component: {fileID: 5162801970808936575}
   - component: {fileID: 1839213292525555295}
-  - component: {fileID: 6902936372435353768}
   - component: {fileID: 1916782541490743786}
   - component: {fileID: 7019258568422357718}
   - component: {fileID: 2186570884881978715}
@@ -150,22 +148,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5162801970808936575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698197800523014271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6257ebe783c90f641b2faada3db6984b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firerate: 0.1
-  playerController: {fileID: 1839213292525555295}
-  bulletPosition: {fileID: 82758101577214949}
-  bullet: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
 --- !u!114 &1839213292525555295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,24 +163,13 @@ MonoBehaviour:
   bulletController: {fileID: 0}
   onPlayerDamage: {fileID: 11400000, guid: de090da145cef1e41ba55550f59ef662, type: 2}
   onPlayerDeath: {fileID: 11400000, guid: 89f4a7ca0b73b3141b2b6cd8445964d7, type: 2}
-  exp: 0
-  expmax: 0
-  level: 0
-  health: 6
-  missileCount: 20
---- !u!114 &6902936372435353768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698197800523014271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b09937643811ec4c9495fe087a2700b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  onMissileFired: {fileID: 11400000, guid: 8b21f3bac7af46c41a6b560525204027, type: 2}
+  stats: {fileID: 11400000, guid: 6f0354f18db2abb418b369cd7849a637, type: 2}
+  firerate: 0.1
+  bulletPosition: {fileID: 82758101577214949}
+  bullet: {fileID: 7891393165852006872, guid: c0c54ab138b7022469a78b7b654a42a9, type: 3}
   moveSpeed: 7
+  uiUpdate: {fileID: 11400000, guid: 23a3019a626ec3e42b9bc639edf98958, type: 2}
 --- !u!61 &1916782541490743786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -288,8 +259,8 @@ MonoBehaviour:
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5162801970808936575}
-        m_TargetAssemblyTypeName: playerAttack, Assembly-CSharp
+      - m_Target: {fileID: 1839213292525555295}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: StopShooting
         m_Mode: 1
         m_Arguments:

@@ -8,6 +8,7 @@ public class behaviour : MonoBehaviour
     public GameEvent enemyDeath;
     public float moveSpeed;
     public PlayerController playerController;
+    public GameEvent uiUpdate;
 
     private string struckBy;
     private float moveDirection = 1;
@@ -77,6 +78,7 @@ public class behaviour : MonoBehaviour
     void killEnemy()
     {
         enemyDeath.TriggerEvent();
+        uiUpdate.TriggerEvent();
         Disable();
     }
 }
