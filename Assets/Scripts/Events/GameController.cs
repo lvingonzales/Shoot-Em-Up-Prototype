@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject player1;
+    public GameObject upgradeScreen;
     public PlayerStats playerStats;
     public GameEvent pause;
     public static bool isGamePaused;
@@ -32,34 +33,47 @@ public class GameController : MonoBehaviour
         PauseControl();
     }
 
+    public void PauseTrigger()
+    {
+        pause.TriggerEvent();
+    }
+
     private void PauseControl()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isGamePaused = !isGamePaused;
+            if (upgradeScreen.activeInHierarchy)
+            {
+                isGamePaused = true;
+            }
             if (isGamePaused)
             {
+                PauseTrigger();
                 PauseGame();
             }
             else
             {
+                PauseTrigger();
                 ResumeGame();
             }
             
         }
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
-        pause.TriggerEvent();
+        isGamePaused = true;
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        pause.TriggerEvent();
-        isGamePaused = false;
-        Time.timeScale = 1;
+        if(!upgradeScreen.activeInHierarchy)
+        {
+            isGamePaused = false;
+            Time.timeScale = 1;
+        } 
     }
 
     public void ExitToMenuScene(string sceneName)

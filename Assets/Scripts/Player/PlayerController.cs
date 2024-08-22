@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public float moveSpeed;
     public GameEvent uiUpdate;
+    public GameEvent levelUp;
 
     private Rigidbody2D rb;
     private float moveDirectionX;
@@ -40,27 +39,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        stats.hpValue = stats.hpValue - 2;
+        onPlayerDamage.TriggerEvent();
+        uiUpdate.TriggerEvent();
+        if (stats.hpValue <= 0)
         {
-            stats.hpValue = stats.hpValue - 2;
-            onPlayerDamage.TriggerEvent();
-            uiUpdate.TriggerEvent();
-            if (stats.hpValue <= 0)
-            {
-                Debug.Log("IM DEAD");
-                onPlayerDeath.TriggerEvent();
-                gameObject.SetActive(false);
-            }
+            Debug.Log("IM DEAD");
+            onPlayerDeath.TriggerEvent();
+            gameObject.SetActive(false);
         }
     }
 
     public void Experience ()
     {
-        stats.expValue++;
-        if (stats.expValue >= stats.expMaxValue)
+        if (stats.level != stats.MAXLEVEL)
         {
-            stats.LevelUp();
-        }
+            stats.expValue++;
+            if (stats.expValue >= stats.expMaxValue)
+            {
+                levelUp.TriggerEvent();
+                stats.LevelUp();
+            }
+        }  
     }
 
     void Missile()

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0205bd1548fa15447ba198b419180d39, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
+  MAXLEVEL: 9
   hpValue: 6
   expValue: 0
-  expMaxValue: 10
-  level: 1
+  expMaxValue: 20
+  level: 2
+  missileCount: 20

@@ -6,8 +6,6 @@ public class behaviour : MonoBehaviour
 {
     public int enemyhp = 3;
     public GameEvent enemyDeath;
-    public float moveSpeed;
-    public PlayerController playerController;
     public GameEvent uiUpdate;
 
     private string struckBy;
@@ -21,22 +19,13 @@ public class behaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("Disable", 3.0f);
+        Invoke("Disable", 10.0f);
 
         if (enemyhp < 3)
         {
             enemyhp = 3;
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
-    }
-    void Move ()
-    {
-        rb.velocity = new Vector2(moveSpeed * moveDirection, rb.velocity.y);
     }
 
     void Disable()

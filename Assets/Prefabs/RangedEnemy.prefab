@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2196068185520706746}
   - component: {fileID: 2957233752802045773}
   - component: {fileID: 6321045161689893148}
-  m_Layer: 0
-  m_Name: BasicEnemy
+  m_Layer: 7
+  m_Name: RangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbdb3daf4562042428a3f5c411e5ddc9, type: 3}
-  m_Color: {r: 0.5773733, g: 0.26099145, b: 0.6509434, a: 1}
+  m_Color: {r: 0.6688938, g: 0.18836774, b: 0.7830189, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

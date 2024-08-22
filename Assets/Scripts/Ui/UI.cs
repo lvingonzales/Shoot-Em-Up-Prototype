@@ -10,12 +10,13 @@ public class UI : MonoBehaviour
     public TextMeshProUGUI experienceAmount;
     public TextMeshProUGUI Level;
     public PlayerStats stats;
-    public GameObject pausePanel;
+    public GameObject pausePanel, upgradeScreen;
 
     private void Start()
     {
         UIUpdate();
         pausePanel.SetActive(false);
+        upgradeScreen.SetActive(false);
     }
     public void UIUpdate()
     {
@@ -34,6 +35,18 @@ public class UI : MonoBehaviour
         else
         {
             pausePanel.SetActive(true);
+        }
+    }
+
+    public void Upgrades()
+    {
+        if(upgradeScreen.activeInHierarchy)
+        {
+            upgradeScreen.SetActive(false);
+        }
+        else
+        {
+            upgradeScreen.SetActive(true);
         }
     }
 }

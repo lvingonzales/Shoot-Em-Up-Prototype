@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject rEnemy, mEnemy;
     public int hordeSize;
     public static EnemySpawner current;
+    public Transform rSpawner1, rSpawner2, mSpawner1, mSpawner2;
 
-    private List<GameObject> enemies;
+    bool spawnSide;
+    private List<GameObject> rEnemies;
+    private List<GameObject> mEnemies;
 
     private void Awake()
     {
@@ -22,24 +25,43 @@ public class EnemySpawner : MonoBehaviour
 
     private void Setup()
     {
-        enemies = new List<GameObject>();
-        for (int i = 0; i < hordeSize; i++)
+        rEnemies = new List<GameObject>();
+        for (int i = 0; i < (hordeSize*.75); i++)
         {
-            GameObject obj = Instantiate(enemy);
+            GameObject obj = Instantiate(rEnemy);
             obj.SetActive(false);
-            enemies.Add(obj);
+            rEnemies.Add(obj);
         }
-        InvokeRepeating("Spawn", 0.0f, 0.10f);
-        //InvokeRepeating("AddHorde", 0.0f, 5.0f);
+        mEnemies = new List<GameObject>();
+        for (int i = 0; i < (hordeSize * .25); i++)
+        {
+            GameObject obj = Instantiate(mEnemy);
+            obj.SetActive(false);
+            mEnemies.Add(obj);
+        }
+        InvokeRepeating("Spawn", 1f, .5f);
     }
 
-    public GameObject GetCurrentEnemy ()
+    public GameObject GetCurrentRangedEnemy ()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < rEnemies.Count; i++)
         {
-            if (!enemies[i].activeInHierarchy)
+            if (!rEnemies[i].activeInHierarchy)
             {
-                return enemies[i];
+                return rEnemies[i];
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject GetCurrentMeleeEnemy()
+    {
+        for (int i = 0; i < mEnemies.Count; i++)
+        {
+            if (!mEnemies[i].activeInHierarchy)
+            {
+                return mEnemies[i];
             }
         }
 
@@ -48,21 +70,23 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn ()
     {
-        GameObject obj = current.GetCurrentEnemy();
-        if (obj == null) return;
-        obj.transform.position = this.transform.position;
-        obj.SetActive(true);
-        
-    }
-    
-    void AddHorde()
-    {
-        hordeSize += 3;
-        for (int i = enemies.Count-1;  i < hordeSize; i++)
+        GameObject robj = current.GetCurrentRangedEnemy();
+        if (robj == null) return;
+        robj.transform.position = rSpawner1.transform.position;
+        robj.SetActive(true);
+
+        GameObject mobj = current.GetCurrentMeleeEnemy();
+        if (mobj == null) return;
+        if (spawnSide)
         {
-            GameObject obj = Instantiate(enemy);
-            obj.SetActive(false);
-            enemies.Add(obj);
+            mobj.transform.position = mSpawner1.transform.position;
+            spawnSide = !spawnSide;
         }
+        else
+        {
+            mobj.transform.position = mSpawner2.transform.position;
+            spawnSide = !spawnSide;
+        }
+        mobj.SetActive(true);
     }
 }

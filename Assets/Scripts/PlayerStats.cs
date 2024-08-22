@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player Stats")]
 public class PlayerStats : ScriptableObject
 {
+    public int MAXLEVEL = 9;
     public float hpValue;
     public float expValue;
     public float expMaxValue;
@@ -34,5 +35,6 @@ public class PlayerStats : ScriptableObject
     {
         expValue = 0;
         level++;
+        expMaxValue = expMaxValue+10;
     }    
 }
