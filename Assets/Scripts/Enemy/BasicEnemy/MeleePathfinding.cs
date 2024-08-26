@@ -5,10 +5,10 @@ using Pathfinding;
 
 public class MeleePathfinding : MonoBehaviour
 {
-    public Transform target;
     public float moveSpeed;
     public float nextWaypointDistance = 1f;
 
+    Transform target;
     GameObject playerInstance;
     Path path;
     int currentWaypoint;
@@ -29,7 +29,7 @@ public class MeleePathfinding : MonoBehaviour
     private void UpdatePath()
     {
         if (seeker.IsDone())
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
     void OnPathComplete(Path p)

@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0205bd1548fa15447ba198b419180d39, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: 1ffd7f23a3dd4dc4d84cc6e799b4832a, type: 3}
+  m_Name: RangedTransformRoutes
   m_EditorClassIdentifier: 
-  MAXLEVEL: 9
-  hpValue: 1000
-  expValue: 4
-  expMaxValue: 20
-  level: 2
-  missileCount: 20
+  rangedRoute: []

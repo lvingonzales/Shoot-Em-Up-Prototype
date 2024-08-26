@@ -8,24 +8,16 @@ public class behaviour : MonoBehaviour
     public GameEvent enemyDeath;
     public GameEvent uiUpdate;
 
-    private string struckBy;
-    private float moveDirection = 1;
-    private Rigidbody2D rb;
-    
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    RangedPathfinding rangedPathfinding;
 
     private void OnEnable()
     {
-        Invoke("Disable", 10.0f);
+        //Invoke("Disable", 4f);
 
         if (enemyhp < 3)
         {
             enemyhp = 3;
         }
-
     }
 
     void Disable()
@@ -68,6 +60,8 @@ public class behaviour : MonoBehaviour
     {
         enemyDeath.TriggerEvent();
         uiUpdate.TriggerEvent();
+        rangedPathfinding = this.GetComponent<RangedPathfinding>();
+        rangedPathfinding.ResetPath();
         Disable();
     }
 }

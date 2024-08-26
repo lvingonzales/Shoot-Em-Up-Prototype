@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     public int hordeSize;
     public static EnemySpawner current;
     public Transform rSpawner1, rSpawner2, mSpawner1, mSpawner2;
+    public Transform[] rangedRoutes;
 
+    RangedPathfinding rangedpathfinding;
     bool spawnSide;
     private List<GameObject> rEnemies;
     private List<GameObject> mEnemies;
@@ -29,11 +31,13 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < (hordeSize*.75); i++)
         {
             GameObject obj = Instantiate(rEnemy);
+            rangedpathfinding = obj.GetComponent<RangedPathfinding>();
+            rangedpathfinding.routes[0] = rangedRoutes[0];
             obj.SetActive(false);
             rEnemies.Add(obj);
         }
         mEnemies = new List<GameObject>();
-        for (int i = 0; i < (hordeSize * .25); i++)
+        for (int i = 0; i < (hordeSize * 0); i++)
         {
             GameObject obj = Instantiate(mEnemy);
             obj.SetActive(false);
