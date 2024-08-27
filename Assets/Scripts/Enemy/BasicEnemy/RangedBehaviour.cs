@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class behaviour : MonoBehaviour
+public class RangedBehaviour : MonoBehaviour
 {
     public int enemyhp = 3;
     public GameEvent enemyDeath;
     public GameEvent uiUpdate;
-
+    public int enemyAmmoCount;
     RangedPathfinding rangedPathfinding;
 
     private void OnEnable()
     {
         //Invoke("Disable", 4f);
-
-        if (enemyhp < 3)
-        {
-            enemyhp = 3;
-        }
+        enemyhp = 3;
+        enemyAmmoCount = 10;
     }
 
     void Disable()
@@ -43,25 +40,23 @@ public class behaviour : MonoBehaviour
                 killEnemy();
             }
         }
-        if (collision.CompareTag("Missile"))
+        else
         {
-            if (enemyhp > 0)
-            {
-                enemyhp= enemyhp - 3;
-            }
-            else
-            {
-                killEnemy();
-            }
-        }       
+            killEnemy();
+        }
     }
 
     void killEnemy()
     {
         enemyDeath.TriggerEvent();
         uiUpdate.TriggerEvent();
+        Disable();
         rangedPathfinding = this.GetComponent<RangedPathfinding>();
         rangedPathfinding.ResetPath();
-        Disable();
+    }
+
+    public void Shoot()
+    {
+        enemyAmmoCount--;
     }
 }

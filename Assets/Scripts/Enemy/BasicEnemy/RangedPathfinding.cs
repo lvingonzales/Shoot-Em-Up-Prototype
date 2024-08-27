@@ -5,13 +5,25 @@ using Pathfinding;
 
 public class RangedPathfinding : MonoBehaviour
 {
-    public Transform[] routes;
+    // Bezier Curve Route Variables
+    public Transform route;
 
     private int routeToGo;
     private float tParam;
     private Vector2 enemyPosition;
+
+    // Move Speed Modifier
     private float speedModifier;
+
+    // Coroutine Condition
     bool coroutineAllowed;
+
+    // Waypoint System Variables
+    bool isAtRouteStart = false;
+    float minDistance = 0.1f;
+
+    // Attack System Variables
+    [SerializeField] private RangedBehaviour rangedBehaviour;
 
     private void Start()
     {
@@ -19,6 +31,7 @@ public class RangedPathfinding : MonoBehaviour
         tParam = 0f;
         speedModifier = 0.25f;
         coroutineAllowed = true;
+        rangedBehaviour = GetComponent<RangedBehaviour>();
     }
 
     private void Update()
@@ -30,11 +43,32 @@ public class RangedPathfinding : MonoBehaviour
     {
         coroutineAllowed = false;
 
-        Vector2 p0 = routes[routeNumber].GetChild(0).position;
-        Vector2 p1 = routes[routeNumber].GetChild(1).position;
-        Vector2 p2 = routes[routeNumber].GetChild(2).position;
-        Vector2 p3 = routes[routeNumber].GetChild(3).position;
+        Vector2 p0 = route.GetChild(0).position;
+        Vector2 p1 = route.GetChild(1).position;
+        Vector2 p2 = route.GetChild(2).position;
+        Vector2 p3 = route.GetChild(3).position;
         
+        while (!isAtRouteStart)
+        {
+            tParam = Time.deltaTime * speedModifier;
+
+            float distance = Vector2.Distance(transform.position, p0);
+            //Debug.Log("Distance: " + distance);
+            transform.position = Vector2.MoveTowards(transform.position, p0, tParam*25);
+            if (distance < minDistance)
+            {
+                tParam = 0;
+                isAtRouteStart = true;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (rangedBehaviour.enemyAmmoCount > 0)
+        {
+            rangedBehaviour.Shoot();
+            yield return new WaitForSeconds(.25f);
+        }
+
         while (tParam < 1)
         {
             tParam += Time.deltaTime * speedModifier;
@@ -55,8 +89,7 @@ public class RangedPathfinding : MonoBehaviour
         if (tParam >= 1f) gameObject.SetActive(false);
 
         tParam = 0f;
-        routeToGo += 1;
-        if(routeToGo > routes.Length - 1) routeToGo = 0;
+        isAtRouteStart = false;
         coroutineAllowed = true;
     }
     

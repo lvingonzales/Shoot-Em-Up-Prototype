@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7664251935753265961}
   - component: {fileID: 2196068185520706746}
   - component: {fileID: 2957233752802045773}
-  - component: {fileID: 6321045161689893148}
   - component: {fileID: 4379964156525800283}
+  - component: {fileID: 6576444231744222760}
   m_Layer: 10
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -160,7 +160,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5236337, y: 0.98908377}
   m_EdgeRadius: 0
---- !u!114 &6321045161689893148
+--- !u!114 &4379964156525800283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064013579682581045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7dd649932e90e4da8522d258453f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  route: {fileID: 0}
+--- !u!114 &6576444231744222760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,17 +188,4 @@ MonoBehaviour:
   enemyhp: 3
   enemyDeath: {fileID: 11400000, guid: a1eee6b66b2090c49bfe6cfec65de157, type: 2}
   uiUpdate: {fileID: 11400000, guid: 23a3019a626ec3e42b9bc639edf98958, type: 2}
---- !u!114 &4379964156525800283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064013579682581045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7dd649932e90e4da8522d258453f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routes:
-  - {fileID: 0}
+  enemyAmmoCount: 10
