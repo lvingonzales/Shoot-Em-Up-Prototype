@@ -10,6 +10,10 @@ public class RangedBehaviour : MonoBehaviour
     public int enemyAmmoCount;
     RangedPathfinding rangedPathfinding;
 
+    public Transform enemyBulletPosition;
+    [SerializeField] private GameObject enemyProjectile;
+    [SerializeField] private PlayerHealthManager healthmanager;
+
     private void OnEnable()
     {
         //Invoke("Disable", 4f);
@@ -29,6 +33,7 @@ public class RangedBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player")) healthmanager.ApplyDamage(2, collision.gameObject);
         if (collision.CompareTag("Bullet"))
         {
             if (enemyhp > 0)
@@ -57,6 +62,13 @@ public class RangedBehaviour : MonoBehaviour
 
     public void Shoot()
     {
-        enemyAmmoCount--;
+        if (enemyAmmoCount > 0)
+        {
+            GameObject obj = Instantiate(enemyProjectile);
+            if (obj == null) return;
+            obj.transform.position = enemyBulletPosition.position;
+            obj.SetActive(true);
+            enemyAmmoCount--;
+        }
     }
 }

@@ -218,3 +218,4 @@ MonoBehaviour:
   enemyhp: 3
   enemyDeath: {fileID: 11400000, guid: a1eee6b66b2090c49bfe6cfec65de157, type: 2}
   uiUpdate: {fileID: 11400000, guid: 23a3019a626ec3e42b9bc639edf98958, type: 2}
+  healthManager: {fileID: 11400000, guid: 7886ae2a313b5454983b2d25c19da7df, type: 2}

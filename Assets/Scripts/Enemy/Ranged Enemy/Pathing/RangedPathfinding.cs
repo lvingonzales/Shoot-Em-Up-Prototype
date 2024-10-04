@@ -23,7 +23,7 @@ public class RangedPathfinding : MonoBehaviour
     float minDistance = 0.1f;
 
     // Attack System Variables
-    [SerializeField] private RangedBehaviour rangedBehaviour;
+    private RangedBehaviour rangedBehaviour;
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class RangedPathfinding : MonoBehaviour
         while (rangedBehaviour.enemyAmmoCount > 0)
         {
             rangedBehaviour.Shoot();
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.5f);
         }
 
         while (tParam < 1)

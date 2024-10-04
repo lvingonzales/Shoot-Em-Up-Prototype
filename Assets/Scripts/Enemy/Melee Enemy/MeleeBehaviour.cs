@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeBehaviour : MonoBehaviour
@@ -9,6 +10,8 @@ public class MeleeBehaviour : MonoBehaviour
     public GameEvent uiUpdate;
 
     RangedPathfinding rangedPathfinding;
+
+    [SerializeField] private PlayerHealthManager healthManager;
 
     private void OnEnable()
     {
@@ -32,6 +35,7 @@ public class MeleeBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player")) healthManager.ApplyDamage(2, collision.gameObject);
         if (collision.CompareTag("Bullet"))
         {
             if (enemyhp > 0)

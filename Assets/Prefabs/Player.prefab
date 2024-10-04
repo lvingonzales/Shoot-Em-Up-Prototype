@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1916782541490743786}
   - component: {fileID: 7019258568422357718}
   - component: {fileID: 2186570884881978715}
+  - component: {fileID: 15759634868865546}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -170,6 +171,14 @@ MonoBehaviour:
   moveSpeed: 7
   uiUpdate: {fileID: 11400000, guid: 23a3019a626ec3e42b9bc639edf98958, type: 2}
   levelUp: {fileID: 11400000, guid: 15b7a23543d1a1b4b8dc758b6b4cf965, type: 2}
+  invulnerabilityFrames: 1.5
+  upgradeLists:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &1916782541490743786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -262,6 +271,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1839213292525555295}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: StopShooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &15759634868865546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698197800523014271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3e331fbd531d43b4f15ef6676da04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: de090da145cef1e41ba55550f59ef662, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1839213292525555295}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InvulnerabilityFramesStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

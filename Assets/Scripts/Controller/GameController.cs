@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,10 @@ public class GameController : MonoBehaviour
     public PlayerStats playerStats;
     public GameEvent pause;
     public static bool isGamePaused;
+
+    [SerializeField] private PlayerHealthManager healthManager;
+    [SerializeField] private UpgradeHandler upgradeHandler;
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -24,6 +29,9 @@ public class GameController : MonoBehaviour
     private void PlayerCreation()
     {
         GameObject player = Instantiate(player1);
+        healthManager.player = player;
+        playerController = player.GetComponent<PlayerController>();
+        playerController.upgradeHandler = upgradeHandler;
         player.SetActive(true);
         player.transform.position = this.transform.position;
     }

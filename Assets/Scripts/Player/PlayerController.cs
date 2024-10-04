@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,18 +15,26 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public GameEvent uiUpdate;
     public GameEvent levelUp;
+    public UpgradeHandler upgradeHandler;
 
     private Rigidbody2D rb;
     private float moveDirectionX;
     private float moveDirectionY;
+    Vector3 dupeBulletPos;
+    [SerializeField] private float invulnerabilityFrames;
+    
+
+    SpriteRenderer sr;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
+
         InvokeRepeating("Shoot", 0f, firerate);
     }
 
@@ -35,19 +46,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        stats.hpValue = stats.hpValue - 2;
-        onPlayerDamage.TriggerEvent();
-        uiUpdate.TriggerEvent();
-        if (stats.hpValue <= 0)
-        {
-            Debug.Log("IM DEAD");
-            onPlayerDeath.TriggerEvent();
-            gameObject.SetActive(false);
-        }
     }
 
     public void Experience ()
@@ -63,6 +61,23 @@ public class PlayerController : MonoBehaviour
         }  
     }
 
+    public void InvulnerabilityFramesStart()
+    {
+        StartCoroutine(InvulnerabilityFrames());
+    }
+
+    private IEnumerator InvulnerabilityFrames()
+    {
+        stats.isInvulnerable = true;
+        sr.color = Color.green;
+
+        yield return new WaitForSeconds(invulnerabilityFrames);
+
+        stats.isInvulnerable = false;
+        sr.color = Color.white;
+        yield return null;
+    }
+
     void Missile()
     {
         GameObject obj = MissilePooler.current.GetPooledObject();
@@ -75,11 +90,25 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        GameObject obj = BulletPooler.current.GetPooledObject();
-        if (obj == null) return;
-        obj.transform.position = bulletPosition.position;
-        obj.SetActive(true);
+        if (!GameController.isGamePaused)
+        {
+            GameObject obj = BulletPooler.current.GetPooledObject();
+            if (obj == null) return;
+            obj.transform.position = bulletPosition.position;
+            obj.SetActive(true);
+
+            if (upgradeHandler.upgrades[0].isApplied)
+            {
+                GameObject dobj = BulletPooler.current.GetPooledObject();
+                if (dobj == null) return;
+                dupeBulletPos = bulletPosition.position;
+                dupeBulletPos.x += 0.3f;
+                dobj.transform.position = dupeBulletPos;
+                dobj.SetActive(true);
+            }
+        }
     }
+
 
     public void StopShooting()
     {
